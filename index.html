@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LexConnect – Votre droit, votre voix</title>
+  <title>JustiLien – Votre droit, votre voix</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,6 +21,8 @@
       <li><a href="#documents">Documents</a></li>
       <li><a href="#abonnement">Abonnement</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="connexion.html">Connexion</a></li>
+      <li><a href="inscription.html">Inscription</a></li>
     </ul>
   </nav>
 </header>
@@ -88,7 +90,7 @@
   <section id="documents">
     <h2>Documents juridiques disponibles</h2>
     <ul>
-      <li><a href="#">Contrat de travail</a></li>
+      <li><a href="Facture.pdf">Contrat de travail</a></li>
       <li><a href="#">Bail locatif</a></li>
       <li><a href="#">Lettre de recours</a></li>
       <li><a href="#">Convention de partenariat</a></li>
@@ -117,8 +119,8 @@
       
       <button type="submit">Envoyer</button>
     </form>
-    <p> WhatsApp : +242 06 123 4567</p>
-    <p> Email : contact@justilien.cg</p>
+    <p> WhatsApp : +242 06 982 10 24 4567</p>
+    <p> Email : contact@lexconnect.cg</p>
   </section>
   <!-- Bouton retour en haut -->
 <button id="backToTop">↑</button>
@@ -168,10 +170,30 @@
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; 2025 JustiLien – Tous droits réservés | Conçu pour l’accès équitable au droit</p>
+    <p>&copy; 2025 LexConnect – Tous droits réservés | Conçu pour l’accès équitable au droit</p>
   </div>
 </footer>
 
   <script src="script.js"></script>
+  <script>
+const form = document.querySelector("form");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = {
+    nom: document.getElementById("nom").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value
+  };
+
+  const response = await fetch("http://localhost:3000/send-email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  const result = await response.json();
+  alert(result.message);
+});
+</script>
 </body>
 </html>
